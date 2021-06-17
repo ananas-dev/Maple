@@ -1,5 +1,5 @@
 add_executable(Sandbox src/SandboxApp.cpp)
-include_directories(${CMAKE_SOURCE_DIR}/Topaze/src)
+target_include_directories(Sandbox PUBLIC ${CMAKE_SOURCE_DIR}/Topaze/src)
 target_link_libraries(Sandbox Topaze)
 
 if (WIN32)

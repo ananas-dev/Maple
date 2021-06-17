@@ -4,7 +4,7 @@
 
 namespace Topaze {
 
-    class Application
+    class TOPAZE_API Application
     {
     public:
         Application();
