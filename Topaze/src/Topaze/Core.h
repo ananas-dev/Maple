@@ -1,4 +1,3 @@
-/*
 #ifdef TPZ_PLATFORM_WINDOWS
     #ifdef TPZ_BUILD
         #define TOPAZE_API __declspec(dllexport)
@@ -14,7 +13,3 @@
 #else
     #error Platform not supported !
 #endif
-
-*/
-
-#define TOPAZE_API
