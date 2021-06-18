@@ -1,6 +1,6 @@
 #include "Application.h"
 
-namespace Topaze {
+namespace Maple {
 
     Application::Application()
     {

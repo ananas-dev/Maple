@@ -2,9 +2,9 @@
 
 #include "Core.h"
 
-namespace Topaze {
+namespace Maple {
 
-    class TOPAZE_API Application
+    class Maple_API Application
     {
     public:
         Application();

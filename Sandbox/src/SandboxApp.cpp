@@ -1,7 +1,7 @@
 #include <iostream>
-#include <Topaze.h>
+#include <Maple.h>
 
-class Sandbox : public Topaze::Application
+class Sandbox : public Maple::Application
 {
 public:
     Sandbox()
@@ -15,7 +15,7 @@ public:
     }
 };
 
-Topaze::Application* Topaze::CreateApplication()
+Maple::Application* Maple::CreateApplication()
 {
     return new Sandbox();
 }

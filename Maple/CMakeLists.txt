@@ -2,23 +2,23 @@
 add_subdirectory(vendor/spdlog)
 
 file(GLOB SRCS
-    "src/Topaze/Application.cpp"
-    "src/Topaze/Log.cpp"
+    "src/Maple/Application.cpp"
+    "src/Maple/Log.cpp"
 )
 
 # Definitions
-add_compile_definitions("TPZ_BUILD")
+add_compile_definitions("MP_BUILD")
 
 if (WIN32)
-    add_compile_definitions("TPZ_PLATFORM_WINDOWS")
+    add_compile_definitions("MP_PLATFORM_WINDOWS")
 endif (WIN32)
 
 if (UNIX)
-    add_compile_definitions("TPZ_PLATFORM_UNIX")
+    add_compile_definitions("MP_PLATFORM_UNIX")
 endif (UNIX)
 
 # Create a shared library
-add_library(Topaze SHARED ${SRCS})
+add_library(Maple SHARED ${SRCS})
 
 ################
 # DEPENDENCIES #
@@ -32,12 +32,12 @@ set(VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 # Link it to our library
-target_link_libraries(Topaze PRIVATE spdlog::spdlog)
+target_link_libraries(Maple PRIVATE spdlog::spdlog)
 
 # Make sure we can import the headers from our code
-target_include_directories(Topaze PUBLIC "${VENDOR_DIR}/spdlog/include")
+target_include_directories(Maple PUBLIC "${VENDOR_DIR}/spdlog/include")
 
 # Instructions for global installation
-install(TARGETS Topaze
+install(TARGETS Maple
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib)
