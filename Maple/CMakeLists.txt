@@ -1,9 +1,11 @@
-# Add dependency directories
-add_subdirectory(vendor/spdlog)
+set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
+set(VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 
+# Files
 file(GLOB SRCS
-    "src/Maple/Application.cpp"
-    "src/Maple/Log.cpp"
+    "${SRC_DIR}/Maple/Application.cpp"
+    "${SRC_DIR}/Maple/Log.cpp"
+    "${SRC_DIR}/Platform/WindowsWindow.cpp"
 )
 
 # Definitions
@@ -17,25 +19,36 @@ if (UNIX)
     add_compile_definitions("MP_PLATFORM_UNIX")
 endif (UNIX)
 
-# Create a shared library
-add_library(Maple SHARED ${SRCS})
+# Create a static library
+add_library(Maple STATIC ${SRCS})
+
+# Precompiled header
+target_precompile_headers(Maple PRIVATE "${SRC_DIR}/mppch.h")
+
+# Include directories
+target_include_directories(Maple PUBLIC "${SRC_DIR}")
 
 ################
 # DEPENDENCIES #
 ################
 
-set(VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
-
 # SPDLOG
 
-# This makes it possible to compile spdlog as a static library and link it with our dynamic library
-set_property(TARGET spdlog PROPERTY POSITION_INDEPENDENT_CODE ON)
+add_subdirectory("${VENDOR_DIR}/spdlog")
 
 # Link it to our library
 target_link_libraries(Maple PRIVATE spdlog::spdlog)
 
 # Make sure we can import the headers from our code
 target_include_directories(Maple PUBLIC "${VENDOR_DIR}/spdlog/include")
+
+# GLFW and OpenGL
+add_subdirectory("${VENDOR_DIR}/glfw")
+target_link_libraries(Maple PRIVATE glfw)
+target_include_directories(Maple PUBLIC "${VENDOR_DIR}/glfw/include")
+find_package(OpenGL REQUIRED)
+target_link_libraries(Maple PRIVATE OpenGL::GL)
+
 
 # Instructions for global installation
 install(TARGETS Maple

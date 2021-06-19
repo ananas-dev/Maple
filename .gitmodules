@@ -1,3 +1,6 @@
 [submodule "Maple/vendor/spdlog"]
 	path = Maple/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Maple/vendor/glfw"]
+	path = Maple/vendor/glfw
+	url = https://github.com/glfw/glfw

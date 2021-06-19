@@ -1,15 +1,13 @@
 #pragma once
 
-#include <memory>
-
-#include <spdlog/spdlog.h>
-
 #include "Core.h"
+#include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 
 namespace Maple {
 
-    class Maple_API Log
+    class Log
     {
     public:
         static void Init();
@@ -25,13 +23,16 @@ namespace Maple {
 }
 
 // Core logs macro
-#define MP_CORE_ERROR(...) ::Maple::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define MP_CORE_WARN(...)  ::Maple::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define MP_CORE_INFO(...)  ::Maple::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define MP_CORE_TRACE(...) ::Maple::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#define MP_CORE_INFO(...)  ::Maple::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define MP_CORE_WARN(...)  ::Maple::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define MP_CORE_ERROR(...) ::Maple::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define MP_CORE_FATAL(...) ::Maple::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 
 // Client logs macro
-#define MP_ERROR(...) ::Maple::Log::GetClientLogger()->error(__VA_ARGS__)
-#define MP_WARN(...)  ::Maple::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define MP_INFO(...)  ::Maple::Log::GetClientLogger()->info(__VA_ARGS__)
+
 #define MP_TRACE(...) ::Maple::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define MP_INFO(...)  ::Maple::Log::GetClientLogger()->info(__VA_ARGS__)
+#define MP_WARN(...)  ::Maple::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define MP_ERROR(...) ::Maple::Log::GetClientLogger()->error(__VA_ARGS__)
+#define MP_FATAL(...) ::Maple::Log::GetClientLogger()->fatal(__VA_ARGS__)

@@ -1,6 +1,5 @@
 #include "Log.h"
-
-#include <spdlog/sinks/stdout_color_sinks.h>
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Maple {
 
@@ -10,7 +9,7 @@ namespace Maple {
     void Log::Init()
     {
         spdlog::set_pattern("%^ [%T] %n: %v%$");
-        s_CoreLogger = spdlog::stdout_color_mt("Maple");
+        s_CoreLogger = spdlog::stdout_color_mt("MAPLE");
         s_CoreLogger->set_level(spdlog::level::trace);
 
         s_ClientLogger = spdlog::stdout_color_mt("APP");
