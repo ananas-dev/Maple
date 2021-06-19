@@ -1,6 +1,3 @@
-#include <functional>
-#include <memory>
-
 #include <Maple.h>
 
 class Sandbox : public Maple::Application
