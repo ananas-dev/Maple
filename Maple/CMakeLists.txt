@@ -4,6 +4,8 @@ set(VENDOR_DIR "${CMAKE_CURRENT_SOURCE_DIR}/vendor")
 # Files
 file(GLOB SRCS
     "${SRC_DIR}/Maple/Application.cpp"
+    "${SRC_DIR}/Maple/Layer.cpp"
+    "${SRC_DIR}/Maple/LayerStack.cpp"
     "${SRC_DIR}/Maple/Log.cpp"
     "${SRC_DIR}/Platform/WindowsWindow.cpp"
 )
@@ -49,6 +51,10 @@ target_include_directories(Maple PUBLIC "${VENDOR_DIR}/glfw/include")
 find_package(OpenGL REQUIRED)
 target_link_libraries(Maple PRIVATE OpenGL::GL)
 
+# Glad
+add_subdirectory("${VENDOR_DIR}/glad/cmake")
+glad_add_library(glad_gl_core_mx_46 REPRODUCIBLE MX API gl:core=4.6)
+target_link_libraries(Maple PRIVATE glad_gl_core_mx_46)
 
 # Instructions for global installation
 install(TARGETS Maple

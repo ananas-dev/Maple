@@ -2,10 +2,8 @@
 
 // For use by Maple Application
 
-// Application
 #include "Maple/Application.h"
-
-// Logging
+#include "Maple/Layer.h"
 #include "Maple/Log.h"
 
 // Entry point
