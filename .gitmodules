@@ -4,3 +4,7 @@
 [submodule "Maple/vendor/glfw"]
 	path = Maple/vendor/glfw
 	url = https://github.com/glfw/glfw
+[submodule "Maple/vendor/glad"]
+	path = Maple/vendor/glad
+	url = https://github.com/Dav1dde/glad/
+	branch = glad2
